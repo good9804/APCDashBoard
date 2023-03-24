@@ -49,7 +49,7 @@ router.beforeEach(async function (to, _, next) {
     if (role == 0) {
       next("/users/adminpage");
     } else if (role == 1) {
-      next("/users/mypage");
+      next("/users/usermypage");
     } else {
       alert("로그인 후 이용해주세요.");
       next("/users/login");
