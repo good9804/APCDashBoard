@@ -22,6 +22,7 @@ import store from "./store/index";
 
 router.beforeEach(async function (to, _, next) {
   await store.dispatch("refresh");
+  await store.dispatch("getAlert");
   if (to.meta.requiresAuth) {
     await store.dispatch("verify");
     const accessmessage = await store.getters.getAccessMode;
