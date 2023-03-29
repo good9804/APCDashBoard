@@ -10,6 +10,7 @@ const fileUpload = require("express-fileupload");
 
 var indexRouter = require("./routes/index");
 var imagesRouter = require("./routes/images");
+var kafkaRouter = require("./routes/kafka");
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/dashboard", imagesRouter);
+app.use("/kafka", kafkaRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
