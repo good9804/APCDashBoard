@@ -160,7 +160,6 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 const firebaseApp = firebase.initializeApp(firebaseConfig);
-const db = firebaseApp.firestore();
 
 import { Bar, Line } from "vue-chartjs";
 import {
@@ -466,6 +465,8 @@ export default {
         .get("/dashboard/storage/api/view", {})
         .then((res) => {
           this.all_storage_info = res.data.storage_info;
+
+          const db = firebaseApp.firestore();
           this.all_storage_info.forEach((zone, zone_number) => {
             let zone_all_quantity = 0;
             let zone_grade = {
