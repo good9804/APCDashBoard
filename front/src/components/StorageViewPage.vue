@@ -148,19 +148,8 @@
 </template>
 
 <script>
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
-var firebaseConfig = {
-  apiKey: "AIzaSyALsiOZq2xgrAiiDgrqBk5S_3Yi6zZ-Lqc",
-  databaseURL: "https://unity-apc-default-rtdb.firebaseio.com",
-  projectId: "unity-apc",
-  storageBucket: "unity-apc.appspot.com",
-  messagingSenderId: "473072708063",
-  appId: "1:473072708063:ios:5c46bcfe8af8d31485bc6a",
-};
-// Initialize Firebase
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-
+import firebase from "../firebase";
+import { ref, set } from "firebase/database";
 import { Bar, Line } from "vue-chartjs";
 import {
   Chart as ChartJS,
@@ -466,7 +455,6 @@ export default {
         .then((res) => {
           this.all_storage_info = res.data.storage_info;
 
-          const db = firebaseApp.firestore();
           this.all_storage_info.forEach((zone, zone_number) => {
             let zone_all_quantity = 0;
             let zone_grade = {
@@ -482,13 +470,16 @@ export default {
               });
 
               var item = sector_quantity[index];
-              db.ref(
+              const Ref = ref(
+                firebase,
                 "/ColdStorage/ColdStorage/" +
                   "Sector" +
-                  zone_number +
-                  "Part" +
-                  index
-              ).push(item.toString());
+                  (zone_number + 1) +
+                  "/Part" +
+                  (index + 1)
+              );
+              set(Ref, item.toString());
+              console.log(1);
 
               zone_grade[Sector.grade] += sector_quantity[index];
               zone_all_quantity += sector_quantity[index];

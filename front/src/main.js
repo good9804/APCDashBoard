@@ -6,7 +6,7 @@ import axios from "axios";
 import store from "./store/index";
 import mitts from "mitt"; // [mitt]]
 
-const app = createApp(App).use(router, store, mitts);
+const app = createApp(App).use(router, store, mitts.apply);
 
 const emitter = mitts();
 
