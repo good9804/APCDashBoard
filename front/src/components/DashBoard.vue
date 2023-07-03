@@ -6,24 +6,13 @@
       <div class="inline-flex flex-row gap-4 mb-2">
         <div class="inline-flex flex-col">
           <div class="flex gap-4 mb-4">
-            <div
-              class="bg-white border border-gray-200 rounded-lg shadow dark:bg-white-800 dark:border-white-700"
-            >
-              <div>
-                <iframe
-                  id="iframeExample"
-                  width="1100"
-                  height="600"
-                  src="https://0fcb-118-36-223-138.ngrok-free.app/webgl1/"
-                  frameborder="0"
-                  framespacing="0"
-                  marginheight="0"
-                  marginwidth="0"
-                  scrolling="no"
-                  vspace="0"
-                />
-              </div>
-            </div>
+            <object
+              id="objectExample"
+              width="1110"
+              height="605"
+              data="https://0fcb-118-36-223-138.ngrok-free.app/webgl1/"
+              type="text/html"
+            ></object>
           </div>
 
           <div class="inline-flex">
@@ -37,7 +26,7 @@
                       :options="chartZoneTempOptions"
                       :data="chartZoneTempData"
                       width="414"
-                      height="220"
+                      height="215"
                     />
                   </div>
                   <div class="flex">
@@ -45,7 +34,7 @@
                       :options="chartZoneHumidOptions"
                       :data="chartZoneHumidData"
                       width="414"
-                      height="220"
+                      height="215"
                     />
                   </div>
                 </div>
