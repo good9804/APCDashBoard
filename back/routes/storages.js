@@ -224,44 +224,23 @@ router.post("/api/select/view", async (req, res) => {
     if (!check_zone) {
       res.json({ message: "zone이 없음" });
     } else {
-      const check_sector = await Storage.findOne({
-        zone_number: req.body.zone_number,
-        sector: {
-          $elemMatch: {
-            sector_number: req.body.sector_number,
-          },
-        },
+      var items_grade = {
+        A: 0,
+        B: 0,
+        C: 0,
+        가공: 0,
+      };
+
+      check_zone.sector.forEach((sectors) => {
+        sectors.pallet.forEach((pallets) => {
+          items_grade[sectors.grade] += pallets.quantity;
+        });
       });
-      if (!check_sector) {
-        res.json({ message: "sector가 없음" });
-      } else {
-        const new_pallet = await Storage.findOne({
-          zone_number: req.body.zone_number,
-          sector: {
-            $elemMatch: {
-              sector_number: req.body.sector_number,
-            },
-          },
-        });
-        var items_grade = {
-          A: 0,
-          B: 0,
-          C: 0,
-          가공: 0,
-        };
 
-        new_pallet.sector[req.body.sector_number - 1].pallet.forEach(
-          (element) => {
-            items_grade[new_pallet.sector[req.body.sector_number - 1].grade] +=
-              element.quantity;
-          }
-        );
-
-        res.json({
-          message: "success!",
-          sector_info: items_grade,
-        });
-      }
+      res.json({
+        message: "success!",
+        zone_info: items_grade,
+      });
     }
   } catch (err) {
     res.send(err);

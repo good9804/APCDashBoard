@@ -36,7 +36,7 @@
                     <Line
                       :options="chartZoneTempOptions"
                       :data="chartZoneTempData"
-                      width="300"
+                      width="414"
                       height="220"
                     />
                   </div>
@@ -44,7 +44,7 @@
                     <Line
                       :options="chartZoneHumidOptions"
                       :data="chartZoneHumidData"
-                      width="300"
+                      width="414"
                       height="220"
                     />
                   </div>
@@ -75,27 +75,6 @@
                         </option>
                       </select>
                     </div>
-                    <div class="inline-flex items-center px-3 py-2">
-                      <select
-                        id="Sector"
-                        v-model="storage_info.sector_number"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      >
-                        <option value="" selected disabled hidden>
-                          === Sector ===
-                        </option>
-                        <option value="none" disabled>=== Sector ===</option>
-
-                        <option
-                          v-for="sector_info in sector_number"
-                          :key="sector_info.idx"
-                          :value="sector_info"
-                        >
-                          {{ sector_info }}
-                        </option>
-                      </select>
-                    </div>
-
                     <div class="inline-flex items-center px-3 py-2">
                       <button
                         @click="selectStorage"
@@ -527,11 +506,10 @@ export default {
       this.$axios
         .post("/dashboard/storage/api/select/view", {
           zone_number: this.storage_info.zone_number,
-          sector_number: this.storage_info.sector_number,
         })
         .then((res) => {
           if (res.data.message == "success!") {
-            this.select_storage_info = res.data.sector_info;
+            this.select_storage_info = res.data.zone_info;
           }
           alert(res.data.message);
         })
