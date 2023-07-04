@@ -6,13 +6,18 @@
       <div class="inline-flex flex-row gap-4 mb-2">
         <div class="inline-flex flex-col">
           <div class="flex gap-4 mb-4">
-            <object
-              id="objectExample2"
-              width="1110"
+            <iframe
+              id="iframeExample"
+              width="1100"
               height="605"
-              data="https://0fcb-118-36-223-138.ngrok-free.app/webgl2/"
-              type="text/html"
-            ></object>
+              src="https://0fcb-118-36-223-138.ngrok-free.app/webgl2/"
+              frameborder="0"
+              framespacing="0"
+              marginheight="0"
+              marginwidth="0"
+              scrolling="no"
+              vspace="0"
+            />
           </div>
 
           <div class="inline-flex">

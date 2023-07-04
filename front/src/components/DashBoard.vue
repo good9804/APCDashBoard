@@ -6,13 +6,18 @@
       <div class="inline-flex flex-row gap-4 mb-2">
         <div class="inline-flex flex-col">
           <div class="flex gap-4 mb-4">
-            <object
-              id="objectExample"
-              width="1110"
+            <iframe
+              id="iframeExample"
+              width="1100"
               height="605"
-              data="https://0fcb-118-36-223-138.ngrok-free.app/webgl1/"
-              type="text/html"
-            ></object>
+              src="https://0fcb-118-36-223-138.ngrok-free.app/webgl1/"
+              frameborder="0"
+              framespacing="0"
+              marginheight="0"
+              marginwidth="0"
+              scrolling="no"
+              vspace="0"
+            />
           </div>
 
           <div class="inline-flex">
@@ -25,7 +30,7 @@
                     <Line
                       :options="chartZoneTempOptions"
                       :data="chartZoneTempData"
-                      width="414"
+                      width="413"
                       height="215"
                     />
                   </div>
@@ -33,7 +38,7 @@
                     <Line
                       :options="chartZoneHumidOptions"
                       :data="chartZoneHumidData"
-                      width="414"
+                      width="413"
                       height="215"
                     />
                   </div>
