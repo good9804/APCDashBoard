@@ -165,7 +165,9 @@ router.post("/api/import", async (req, res) => {
     });
     if (!check_zone) {
       res.json({ message: "zone이 없음" });
-    } else {
+    } else if(req.body.zone_info.sector.pallet.quantity<1){
+      res.json({ message: "입고는 양수만 가능합니다" });
+    }else {
       const check_sector = await Storage.findOne({
         zone_number: req.body.zone_info.zone_number,
         sector: {
