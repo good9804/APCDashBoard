@@ -47,7 +47,7 @@ router.beforeEach(async function (to, _, next) {
       next();
     } else {
       alert("허용되지 않은 접근");
-      next("/users/");
+      next("/");
     }
   }
   if (to.meta.requiresRole) {
