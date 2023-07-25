@@ -42,12 +42,16 @@ router.beforeEach(async function (to, _, next) {
   }
   if (to.meta.requiresAdmin) {
     const role = await store.getters.getUserRole;
+    const access_message = await store.getters.getAccessMode;
     console.log(role);
     if (role == 0) {
       next();
-    } else {
-      alert("허용되지 않은 접근");
-      next("/");
+    } else if(access_message==0){
+      alert("로그인 후 이용해주세요.");
+      next("/users/login");
+    }else {
+      alert("관리자 계정만 접근 가능합니다.");
+      next("/users/login");
     }
   }
   if (to.meta.requiresRole) {
