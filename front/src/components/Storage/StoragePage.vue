@@ -317,6 +317,18 @@
                                   Export
                                 </button>
                               </div>
+                              <div v-if="showPopup" class="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
+                                <!-- 팝업 내용 -->
+                                <div class="bg-white p-5 rounded-lg shadow-lg">
+                                  <!-- 팝업 내용을 표시할 부분 -->
+                                  <p>RFID 태그번호를 입력해주세요.</p>
+                                  <input type="text" v-model="rfidTagNumber" class="mt-2 px-3 py-1 border border-gray-300 rounded" placeholder="RFID 태그번호 입력">
+                                  <!-- 팝업 내용 끝 -->
+                                  <button @click="submitRFID" class="mt-4 px-3 py-1 text-white bg-blue-500 rounded">입력</button>
+                                  <button @click="closePopup" class="mt-4 px-3 py-1 text-white bg-red-500 rounded">취소</button>
+                                </div>
+                              </div>
+
                             </div>
                           </div>
                         </div>
@@ -366,6 +378,8 @@ export default {
         sector_number: 0,
       },
       userEditMode: "manageImportMode",
+      showPopup: false,
+      rfidTagNumber: '',
     };
   },
   methods: {
@@ -524,7 +538,17 @@ export default {
       var date_2 = [hour, minute, second].join(":");
       return date_1 + " " + date_2;
     },
-    ExportStorage(pallet_info) {
+    async ExportStorage(pallet_info) {
+      this.showPopup = true;
+
+      // Create a Promise to handle he popup input
+      const rfidTagPromise = new Promise((resolve) => {
+        this.submitRFID = () => {
+          resolve(this.rfidTagNumber); // Resolve the Promise with the entered RFID tag number
+        };
+      });
+      // Wait for the Promise to be resolved (i.e., the user submits the RFID tag number)
+      this.rfidTagNumber = await rfidTagPromise;
       this.$axios
         .post("/dashboard/storage/api/export", {
           zone_number: this.export_pallet_info.zone_number,
@@ -547,6 +571,18 @@ export default {
         .catch((err) => {
           alert(err);
         });
+
+    this.rfidTagNumber = '';
+      this.showPopup = false;
+    },
+    closePopup() {
+    // 팝업을 닫기 위해 팝업 노출 여부를 false로 설정
+    this.showPopup = false;
+  },
+  submitRFID() {
+      console.log('Entered RFID Tag Number:', this.rfidTagNumber);
+      this.rfidTagNumber = '';
+      this.closePopup();
     },
   },
   created() {
