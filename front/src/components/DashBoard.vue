@@ -266,8 +266,11 @@ export default {
         });
     },
     async checkAppleData() {
+      console.log("check"+this.$store.getters.getUserId);
       await this.$axios
-        .get("/dashboard/kafka/item/api/check", {})
+        .get("/dashboard/kafka/item/api/check", {
+          user_id:this.$store.getters.getUserId
+        })
         .then((res) => {
           if (this.user_id != res.data["apple_data"]["user_id"]) {
             this.deleteAppleData(this.user_id);
@@ -280,7 +283,9 @@ export default {
     },
     async getAppleData() {
       await this.$axios
-        .get("/dashboard/kafka/item/api/view", {})
+        .get("/dashboard/kafka/item/api/view", {
+          user_id:this.$store.getters.getUserId
+        })
         .then((res) => {
           this.user_id = res.data["apple_data"]["user_id"];
           this.all_weight = Math.floor(
