@@ -91,9 +91,8 @@ initKafka();
 router.get("/api/check", async (req, res) => {
   try {
     apples = await KafkaItem.find({});
-    console.log(req.body.user_id.toString());
     var apple_data = {
-      user_id: req.body.user_id.toString(),
+      user_id: apples[apples.length - 1]["user_id"],
     };
     res.json({ apple_data: apple_data });
   } catch (err) {
@@ -148,7 +147,7 @@ router.get("/api/view", async (req, res) => {
     };
 
     var apple_data = {
-      user_id: req.body.user_id.toString(),
+      user_id: apples[apples.length - 1]["user_id"],
       all_weight: weight,
       weight: weight / apples.length,
       row: row / apples.length,
