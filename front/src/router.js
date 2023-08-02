@@ -16,6 +16,18 @@ const router = createRouter({
       meta: { requiresAdmin: true },
     },
     {
+      path: "/dashboard/import",
+      name: "import",
+      component: () => import("@/components/Storage/ImportPage"),
+      meta: { requiresAdmin: true },
+    },
+    {
+      path: "/dashboard/export",
+      name: "export",
+      component: () => import("@/components/Storage/ExportPage"),
+      meta: { requiresAdmin: true },
+    },
+    {
       path: "/dashboard/view/storage",
       name: "StorageView",
       component: () => import("@/components/StorageViewPage"),
