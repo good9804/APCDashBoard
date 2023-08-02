@@ -181,10 +181,11 @@
             zone_info: this.import_zone_info,
           })
           .then((res) => {
-            if (res.data.message == "success!") {
+            if (res.data.success == true) {
               this.all_storage_info = res.data.storage_info;
             }
             alert(res.data.message);
+            this.$router.push('/dashboard/view/storage');
           })
           .catch((err) => {
             alert(err);
@@ -196,7 +197,7 @@
             new_zone_info: this.new_zone_info,
           })
           .then((res) => {
-            if (res.data.message == "success!") {
+            if (res.data.success == true) {
               this.all_storage_info = res.data.storage_info;
             }
             alert(res.data.message);
@@ -211,7 +212,7 @@
             new_zone_info: this.new_zone_info,
           })
           .then((res) => {
-            if (res.data.message == "success!") {
+            if (res.data.success == true) {
               this.all_storage_info = res.data.storage_info;
             }
             alert(res.data.message);
@@ -226,7 +227,7 @@
             new_zone_info: this.new_zone_info,
           })
           .then((res) => {
-            if (res.data.message == "success!") {
+            if (res.data.success == true) {
               this.all_storage_info = res.data.storage_info;
             }
             alert(res.data.message);
@@ -243,10 +244,11 @@
             quantity: this.export_storage_info.quantity,
           })
           .then((res) => {
-            if (res.data.message == "success!") {
+            if (res.data.success == true) {
               this.all_storage_info = res.data.storage_info;
             }
             alert(res.data.message);
+            this.$router.push('/dashboarddashboard/view/storage');
           })
           .catch((err) => {
             alert(err);
@@ -259,7 +261,7 @@
             sector_number: this.export_storage_info.sector_number,
           })
           .then((res) => {
-            if (res.data.message == "success!") {
+            if (res.data.success == true) {
               res.data.sector_info.pallet.forEach((element) => {
                 element["createdAt"] = this.formatDate(element["createdAt"]);
                 this.export_pallet_info.zone_number =
@@ -319,7 +321,7 @@
             time: pallet_info.updatedAt,
           })
           .then((res) => {
-            if (res.data.message == "success!") {
+            if (res.data.success == true) {
               res.data.sector_info.pallet.forEach((element) => {
                 element["createdAt"] = this.formatDate(element["createdAt"]);
                 element["order_quantity"] = 0;

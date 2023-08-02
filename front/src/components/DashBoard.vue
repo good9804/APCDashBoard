@@ -502,7 +502,7 @@ export default {
           zone_number: this.storage_info.zone_number,
         })
         .then((res) => {
-          if (res.data.message == "success!") {
+          if (res.data.success == true) {
             this.select_storage_info = res.data.zone_info;
           }
           alert(res.data.message);

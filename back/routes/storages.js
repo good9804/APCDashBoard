@@ -25,8 +25,11 @@ router.get("/api/view", async (req, res) => {
     storage_info.sort(function (a, b) {
       return a.zone_number - b.zone_number;
     });
-    res.json({ message: "success!", storage_info: storage_info });
+    res.json({
+      success:true,
+       message: "조회 성공!", storage_info: storage_info });
   } catch (err) {
+    success: false,
     res.send(err);
   }
 });
@@ -74,9 +77,12 @@ router.post("/api/upload", async (req, res) => {
       }
 
       const storage_info = await Storage.find({});
-      res.json({ message: "success!", storage_info: storage_info });
+      res.json({ 
+        success: true,
+        message: "추가 성공!", storage_info: storage_info });
     }
   } catch (err) {
+    success: false,
     res.send(err);
   }
 });
@@ -111,8 +117,11 @@ router.post("/api/update", async (req, res) => {
       await new_sector.save();
     }
     const storage_info = await Storage.find({});
-    res.json({ message: "success!", storage_info: storage_info });
+    res.json({ 
+      success: true,
+      message: "변경 성공!", storage_info: storage_info });
   } catch (err) {
+    success: false,
     res.send(err);
   }
 });
@@ -150,10 +159,13 @@ router.post("/api/delete", async (req, res) => {
         await delete_sector.save();
 
         const storage_info = await Storage.find({});
-        res.json({ message: "success!", storage_info: storage_info });
+        res.json({ 
+          success: true,
+          message: "삭제 성공!", storage_info: storage_info });
       }
     }
   } catch (err) {
+    success: false,
     res.send(err);
   }
 });
@@ -210,10 +222,13 @@ router.post("/api/import", async (req, res) => {
         await new_pallet.save();
 
         const storage_info = await Storage.find({});
-        res.json({ message: "success!", storage_info: storage_info });
+        res.json({ 
+          success: true,
+          message: "입고 성공!", storage_info: storage_info });
       }
     }
   } catch (err) {
+    success: false,
     res.send(err);
   }
 });
@@ -240,11 +255,13 @@ router.post("/api/select/view", async (req, res) => {
       });
 
       res.json({
-        message: "success!",
+        success: true,
+        message: "조회 성공!",
         zone_info: items_grade,
       });
     }
   } catch (err) {
+    success: false,
     res.send(err);
   }
 });
@@ -278,12 +295,14 @@ router.post("/api/select/export", async (req, res) => {
         });
 
         res.json({
-          message: "success!",
+          success: true,
+          message: "조회 완료!",
           sector_info: new_pallet.sector[req.body.sector_number - 1],
         });
       }
     }
   } catch (err) {
+    success: false,
     res.send(err);
   }
 });
@@ -332,10 +351,12 @@ router.post("/api/export", async (req, res) => {
     await new_pallet.save();
 
     res.json({
-      message: "success!",
+      success: true,
+      message: "출고 성공!",
       sector_info: new_pallet.sector[req.body.sector_number - 1],
     });
   } catch (err) {
+    success: false,
     res.send(err);
   }
 });
