@@ -142,6 +142,17 @@ router.post("/api/delete", async (req, res) => {
           },
         },
       });
+      
+        const stateRef = ref(
+          firebase,
+          "/ColdStorage/State/" +
+            "Sector" +
+            (req.body.new_zone_info.zone_number ) +
+            "/Part" +
+            (req.body.new_zone_info.sector_number)
+        );
+        set(stateRef,"0");
+      
 
       if (
         !check_sector ||
