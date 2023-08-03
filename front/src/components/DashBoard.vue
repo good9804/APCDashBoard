@@ -262,7 +262,7 @@ export default {
           }
         })
         .catch((err) => {
-          alert(err);
+          console.log(err);
         });
     },
     async checkAppleData() {
@@ -275,7 +275,7 @@ export default {
           this.getAppleData();
         })
         .catch((err) => {
-          alert(err);
+          console.log(err);
         });
     },
     async getAppleData() {
@@ -364,7 +364,7 @@ export default {
           };
         })
         .catch((err) => {
-          alert(err);
+          console.log(err);
         });
     },
     getZoneData() {
@@ -493,7 +493,7 @@ export default {
           };
         })
         .catch((err) => {
-          alert(err);
+          console.log(err);
         });
     },
     selectStorage() {
@@ -508,7 +508,7 @@ export default {
           alert(res.data.message);
         })
         .catch((err) => {
-          alert(err);
+          alert(err+"api selectstorage");
         });
       this.getZoneData();
     },
@@ -530,7 +530,7 @@ export default {
           });
         })
         .catch((err) => {
-          alert(err);
+          alert(err+"api get");
         });
     },
     formatDate(date) {

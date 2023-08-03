@@ -340,7 +340,7 @@ export default {
           };
         })
         .catch((err) => {
-          alert(err);
+          console.log(err);
         });
     },
     selectStorage(zone_number) {
@@ -491,7 +491,7 @@ export default {
           });
         })
         .catch((err) => {
-          alert(err);
+          console.log(err);
         });
     },
     formatDate(date) {

@@ -160,7 +160,7 @@ router.get("/api/view", async (req, res) => {
     };
     res.json({ apple_data: apple_data, grade_data: grade_data });
   } catch (err) {
-    res.send(err);
+    res.send(err+"api view");
   }
 });
 

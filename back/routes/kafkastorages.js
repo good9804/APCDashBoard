@@ -91,7 +91,7 @@ router.post("/api/view", async (req, res) => {
       humid_data: humid_data,
     });
   } catch (err) {
-    res.send(err);
+    res.send(err+'api+view');
   }
 });
 
