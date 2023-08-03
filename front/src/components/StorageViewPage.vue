@@ -143,7 +143,7 @@
 
 <script>
 import firebase from "../firebase";
-import { ref, set } from "firebase/database";
+import {  ref, set } from "firebase/database";
 import { Bar, Line } from "vue-chartjs";
 import {
   Chart as ChartJS,
@@ -448,7 +448,9 @@ export default {
         .get("/dashboard/storage/api/view", {})
         .then((res) => {
           this.all_storage_info = res.data.storage_info;
-
+          console.log(this.all_storage_info);
+          let sector_isEmpty = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+          let zone_isEmpty=true;
           this.all_storage_info.forEach((zone, zone_number) => {
             let zone_all_quantity = 0;
             let zone_grade = {
@@ -458,12 +460,22 @@ export default {
               가공: 0,
             };
             let sector_quantity = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            console.log("zone sector");
+            console.log(zone.sector);
+            console.log("zone");
+            console.log(zone);
             zone.sector.forEach((Sector, index) => {
               Sector.pallet.forEach((pallets) => {
                 sector_quantity[index] += pallets.quantity;
-              });
 
+              
+              });
               var item = sector_quantity[index];
+              console.log(Sector);
+              if(item!=0){
+                sector_isEmpty[index]=1;
+                zone_isEmpty=false;
+              }
               const Ref = ref(
                 firebase,
                 "/ColdStorage/ColdStorage/" +
@@ -473,11 +485,13 @@ export default {
                   (index + 1)
               );
               set(Ref, item.toString());
+              console.log("in loop"+Sector.grade);
+              
               console.log(1);
 
               zone_grade[Sector.grade] += sector_quantity[index];
               zone_all_quantity += sector_quantity[index];
-            });
+            });//내부반복문끝
 
             zone.zone_all_quantity = zone_all_quantity;
             zone.zone_grade = zone_grade;
@@ -488,7 +502,53 @@ export default {
               .replace("T", " ")
               .slice(0, 19);
             zone.sector_quantity = sector_quantity;
-          });
+            if(!zone_isEmpty){
+              console.log("zone not isempty");
+              var k=0;
+              zone.sector.forEach((Sector, index)=>{
+                k=index;
+              const stateRef = ref(
+                firebase,
+                "/ColdStorage/State/" +
+                  "Sector" +
+                  (zone_number + 1) +
+                  "/Part" +
+                  (index + 1)
+              );
+            if(sector_isEmpty[index]>0){
+                  set(stateRef,"1"+Sector.grade);
+                  console.log(typeof Sector.grade);
+                  console.log("loop"+Sector.grade);
+            }else {
+              set(stateRef,"0");
+
+            }
+              });
+              for(var i=k+2;i<=12;i++){
+              const stateRef = ref(
+                firebase,
+                "/ColdStorage/State/" +
+                  "Sector" +
+                  (zone_number + 1) +
+                  "/Part" +
+                  (i)
+              );
+              set(stateRef,"0");
+            }
+          }else{
+              for(var j=0;j<12;j++){
+              const stateRef = ref(
+                firebase,
+                "/ColdStorage/State/" +
+                  "Sector" +
+                  (zone_number + 1) +
+                  "/Part" +
+                  (j + 1)
+              );
+              set(stateRef,"0");
+            }
+            }
+            });
         })
         .catch((err) => {
           console.log(err);
