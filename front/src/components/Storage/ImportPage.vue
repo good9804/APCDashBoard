@@ -75,7 +75,7 @@
                           <label
                             for="default-input"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >수량</label
+                            >수량(단위:Box)</label
                           >
                           <input
                             type="text"

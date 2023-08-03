@@ -78,14 +78,14 @@
                                   <h5
                                     class="mb-2 px-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
                                   >
-                                    Item : {{ pallet_info.item }}
+                                    원물 : {{ pallet_info.item }}
                                   </h5>
                                 </div>
                                 <div class="inline-flex items-center px-3 py-2">
                                   <h5
                                     class="mb-2 px-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
                                   >
-                                    Quantity :
+                                    수량(단위:Box) :
                                     {{
                                       pallet_info.quantity -
                                       pallet_info.order_quantity
@@ -96,7 +96,7 @@
                                   <h5
                                     class="mb-2 px-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
                                   >
-                                    Time : {{ pallet_info.createdAt }}
+                                    시간 : {{ pallet_info.createdAt }}
                                   </h5>
                                 </div>
   
