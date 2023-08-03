@@ -27,7 +27,7 @@ router.get("/api/view", async (req, res) => {
     });
     res.json({
       success:true,
-       message: "조회 성공!", storage_info: storage_info });
+       message: "조회가 완료되었습니다.", storage_info: storage_info });
   } catch (err) {
     success: false,
     res.send(err);
@@ -79,7 +79,7 @@ router.post("/api/upload", async (req, res) => {
       const storage_info = await Storage.find({});
       res.json({ 
         success: true,
-        message: "추가 성공!", storage_info: storage_info });
+        message: "저장고 추가가 완료되었습니다.", storage_info: storage_info });
     }
   } catch (err) {
     success: false,
@@ -119,7 +119,7 @@ router.post("/api/update", async (req, res) => {
     const storage_info = await Storage.find({});
     res.json({ 
       success: true,
-      message: "변경 성공!", storage_info: storage_info });
+      message: "변경이 완료되었습니다.", storage_info: storage_info });
   } catch (err) {
     success: false,
     res.send(err);
@@ -161,7 +161,7 @@ router.post("/api/delete", async (req, res) => {
         const storage_info = await Storage.find({});
         res.json({ 
           success: true,
-          message: "삭제 성공!", storage_info: storage_info });
+          message: "저장고 삭제가 완료되었습니다.", storage_info: storage_info });
       }
     }
   } catch (err) {
@@ -224,7 +224,7 @@ router.post("/api/import", async (req, res) => {
         const storage_info = await Storage.find({});
         res.json({ 
           success: true,
-          message: "입고 성공!", storage_info: storage_info });
+          message: "입고 처리가 완료되었습니다.", storage_info: storage_info });
       }
     }
   } catch (err) {
@@ -256,7 +256,7 @@ router.post("/api/select/view", async (req, res) => {
 
       res.json({
         success: true,
-        message: "조회 성공!",
+        message: "조회가 완료되었습니다.",
         zone_info: items_grade,
       });
     }
@@ -296,7 +296,7 @@ router.post("/api/select/export", async (req, res) => {
 
         res.json({
           success: true,
-          message: "조회 완료!",
+          message: "조회가 완료되었습니다.",
           sector_info: new_pallet.sector[req.body.sector_number - 1],
         });
       }
@@ -352,7 +352,7 @@ router.post("/api/export", async (req, res) => {
 
     res.json({
       success: true,
-      message: "출고 성공!",
+      message: "출고 처리가 완료되었습니다.",
       sector_info: new_pallet.sector[req.body.sector_number - 1],
     });
   } catch (err) {
