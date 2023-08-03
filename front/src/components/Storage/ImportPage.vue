@@ -67,8 +67,11 @@
                           class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         >
                           <option value="사과">사과</option>
-                          <option value="배">배</option>
-                          <option value="기타">기타</option>
+                          <option value="토마토">토마토</option>
+                          <option value="포도">포도</option>
+                          <option value="참다래">참다래</option>
+                          <option value="파프리카">파프리카</option>
+                          <option value="딸기">딸기</option>
                         </select>
   
                         <div class="mb-6">
