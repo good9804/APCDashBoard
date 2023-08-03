@@ -226,6 +226,9 @@ export default {
           new_zone_info: this.new_zone_info,
         })
         .then((res) => {
+          console.log("vue");
+          console.log(this.new_zone_info.sector_number);
+          console.log(this.new_zone_info.zone_number);
           if (res.data.success == true) {
             this.all_storage_info = res.data.storage_info;
           }

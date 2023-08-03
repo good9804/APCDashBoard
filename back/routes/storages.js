@@ -6,7 +6,6 @@ require("dotenv").config();
 
 var firebase = require("firebase/compat/app");
 require("firebase/compat/database");
-
 const firebaseConfig = {
   apiKey: process.env.apiKey,
   databaseURL: process.env.databaseURL,
@@ -142,18 +141,7 @@ router.post("/api/delete", async (req, res) => {
           },
         },
       });
-      
-        const stateRef = ref(
-          firebase,
-          "/ColdStorage/State/" +
-            "Sector" +
-            (req.body.new_zone_info.zone_number ) +
-            "/Part" +
-            (req.body.new_zone_info.sector_number)
-        );
-        set(stateRef,"0");
-      
-
+      console.log("first");
       if (
         !check_sector ||
         check_sector.sector.length != req.body.new_zone_info.sector_number
@@ -163,13 +151,26 @@ router.post("/api/delete", async (req, res) => {
         const delete_sector = await Storage.findOne({
           zone_number: req.body.new_zone_info.zone_number,
         });
-
+        console.log("3");
         await delete_sector.sector.pull({
           sector_number: req.body.new_zone_info.sector_number,
         });
         await delete_sector.save();
 
         const storage_info = await Storage.find({});
+        console.log("4");
+        console.log(req.body.new_zone_info.zone_number);
+        console.log(req.body.new_zone_info.sector_number);
+        firebase
+      .database()
+      .ref("/ColdStorage/State/Sector" + req.body.new_zone_info.zone_number + "/Part" + req.body.new_zone_info.sector_number)
+      .set("0")
+      .then(() => {
+        console.log("Part 값이 성공적으로 설정되었습니다.");
+      })
+      .catch((error) => {
+        console.error("Part 값 설정 중 오류가 발생하였습니다:", error);
+      });
         res.json({ 
           success: true,
           message: "저장고 삭제가 완료되었습니다.", storage_info: storage_info });
