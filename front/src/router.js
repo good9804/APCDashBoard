@@ -38,9 +38,8 @@ const router = createRouter({
 
 import store from "./store/index";
 function redirectToLogin(currentUrl,wantUrl) {
-  const currentUrl = window.location.href;
   const url = currentUrl.split('/');
-  const changeurl = url[0] + '//' + url[2] + +'/'+wantUrl;
+  const changeurl = url[0] + '//' + url[2] +'/'+ wantUrl;
   window.location.href = changeurl;
 }
 router.beforeEach(async function (to, _, next) {
