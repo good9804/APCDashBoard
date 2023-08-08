@@ -507,6 +507,8 @@ export default {
               var k=0;
               zone.sector.forEach((Sector, index)=>{
                 k=index;
+                console.log("zone number"+zone_number);
+                console.log("index "+index);
               const stateRef = ref(
                 firebase,
                 "/ColdStorage/State/" +
