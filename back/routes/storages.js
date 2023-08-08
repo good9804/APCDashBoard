@@ -211,7 +211,22 @@ router.post("/api/import", async (req, res) => {
             },
           },
         });
-        await new_pallet.sector[
+        console.log(new_pallet.sector[req.body.zone_info.sector.sector_number - 1].pallet);
+        let totalQuantity = 0;
+        for (const obj of new_pallet.sector[req.body.zone_info.sector.sector_number - 1].pallet) {
+          if (obj.quantity && typeof obj.quantity === 'number') {
+            totalQuantity += obj.quantity;
+          }
+        }
+        console.log(totalQuantity);
+        const existingQuantity = totalQuantity
+        const incomingQuantity = req.body.zone_info.sector.pallet.quantity;
+        const sumQuantity = existingQuantity + incomingQuantity;
+        if(Number(sumQuantity)>20){
+          res.json({ message: "총 수량이 20을 초과합니다. 현재 수량:"+totalQuantity });
+
+        }
+        else{await new_pallet.sector[
           req.body.zone_info.sector.sector_number - 1
         ].pallet.push({
           item: req.body.zone_info.sector.pallet.item,
@@ -239,7 +254,7 @@ router.post("/api/import", async (req, res) => {
           message: "입고 처리가 완료되었습니다.", storage_info: storage_info });
       }
     }
-  } catch (err) {
+  } }catch (err) {
     success: false,
     res.send(err);
   }

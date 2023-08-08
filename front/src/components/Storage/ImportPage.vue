@@ -178,8 +178,13 @@
           });
       },
   
-      onImportStorage() {
-        this.$axios
+      async onImportStorage() {
+        try{
+          console.log(this.import_zone_info.sector.pallet.quantity);
+          if(this.import_zone_info.sector.pallet.quantity>20){
+            throw new Error("20개 이하로 입력해주시기 바랍니다.");
+        }
+        await this.$axios
           .post("/dashboard/storage/api/import", {
             zone_info: this.import_zone_info,
           })
@@ -192,7 +197,10 @@
           })
           .catch((err) => {
             alert(err);
-          });
+          });}
+          catch(err){
+            alert(err);
+          }
       },
       onUploadStorage() {
         this.$axios
