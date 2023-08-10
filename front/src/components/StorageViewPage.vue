@@ -10,7 +10,7 @@
               id="iframeExample"
               width="1100"
               height="605"
-              src="https://b2b8-118-36-223-138.ngrok-free.app/webgl1/"
+              src="https://b2b8-118-36-223-138.ngrok-free.app/webgl2/"
               frameborder="0"
               framespacing="0"
               marginheight="0"
