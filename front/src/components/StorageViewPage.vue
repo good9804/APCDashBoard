@@ -219,7 +219,7 @@ export default {
       // 원하는 URL 부분을 대체하여 상대 경로 생성
       const webGL2RelativePath = currentUrl.replace(
         "/dashboard/view/storage",
-        "/webgl2"
+        "/webgl2/"
       );
 
       return webGL2RelativePath;
