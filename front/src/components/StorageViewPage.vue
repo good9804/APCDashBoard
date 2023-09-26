@@ -10,7 +10,7 @@
               id="iframeExample"
               width="1100"
               height="605"
-              :src="require('@/webgl2/')"
+              src="webgl2/"
               frameborder="0"
               framespacing="0"
               marginheight="0"
