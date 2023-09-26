@@ -10,7 +10,7 @@
               id="iframeExample"
               width="1100"
               height="605"
-              src="webgl2/"
+              :src="getWebGL2Url()"
               frameborder="0"
               framespacing="0"
               marginheight="0"
@@ -211,6 +211,18 @@ export default {
     async Insert(message) {
       await this.$store.commit("insertAlertData", message);
       await this.changeLocalStorage();
+    },
+    getWebGL2Url() {
+      // 현재 페이지의 URL 가져오기
+      const currentUrl = window.location.href;
+      
+      // 원하는 URL 부분을 대체하여 상대 경로 생성
+      const webGL2RelativePath = currentUrl.replace(
+        "/dashboard/view/storage",
+        "/webgl2"
+      );
+
+      return webGL2RelativePath;
     },
 
     getZoneData() {
