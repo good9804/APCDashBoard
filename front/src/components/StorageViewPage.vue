@@ -10,14 +10,14 @@
               id="iframeExample"
               width="1100"
               height="605"
-              src="webgl2/"
+              :src="require('@/webgl2/')"
               frameborder="0"
               framespacing="0"
               marginheight="0"
               marginwidth="0"
               scrolling="no"
               vspace="0"
-            />
+            ></iframe>
           </div>
 
           <div class="inline-flex">
@@ -569,6 +569,7 @@ export default {
     },
   },
   mounted() {
+    console.log(window.location.href);
     this.getZoneData();
     this.getStorageInfo();
     setInterval(() => {
